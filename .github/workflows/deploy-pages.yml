@@ -36,11 +36,21 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Use GitHub Actions as Pages source
+        uses: actions/github-script@v8
+        with:
+          script: |
+            await github.request('PUT /repos/{owner}/{repo}/pages', {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              build_type: 'workflow'
+            })
+
       - name: Configure Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: dist
 
@@ -53,4 +63,4 @@ jobs:
     steps:
       - name: Deploy
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
