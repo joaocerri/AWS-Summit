@@ -1,0 +1,3 @@
+import { memo,ReactNode } from 'react';
+import { motion,useReducedMotion } from 'framer-motion';
+export const Screen=memo(({id,index,title,eyebrow,summary,children}:{id:string;index:number;title:string;eyebrow:string;summary:string;children?:ReactNode})=>{const reduced=useReducedMotion();return <section id={id} data-index={index} className="screen" aria-label={`${index+1}. ${title}`}><motion.div className="screen__inner" initial={reduced?false:{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true,amount:.2}} transition={{duration:reduced?0:.55}}><p className="eyebrow">{eyebrow}</p>{index===0?<h1>{title}</h1>:<h2>{title}</h2>}<div className="accent-line"/><p className="lead">{summary}</p>{children}</motion.div></section>});
