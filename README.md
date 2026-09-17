@@ -15,3 +15,9 @@ npm run dev
 npm run test -- --run
 npm run build
 ```
+
+## GitHub Pages
+
+O push para a branch `main` executa testes, gera o build e publica automaticamente pelo GitHub Actions.
+
+URL esperada: https://joaocerri.github.io/AWS-Summit/
